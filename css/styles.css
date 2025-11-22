@@ -3536,7 +3536,7 @@ td:last-child {
  * -------------------------------------------------------------------- */
 
 /* Views Counter Styling */
-.s-intro__views-counter {
+.views-counter {
     display: inline-block;          
     color: var(--color-btn-stroke-text); 
     font-family: var(--font-1);
@@ -3548,7 +3548,7 @@ td:last-child {
 }
 
 /* Styling the number specifically */
-.s-intro__views-counter .views {
+.views-counter .views {
     color: var(--color-1);               
     font-weight: bold;
     margin-left: 4px;              
