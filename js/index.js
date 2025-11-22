@@ -13,7 +13,7 @@
         let data = await response.json();      
 
         // Updates the HTML content of the selected element with the retrieved view count     
-        counter.innerHTML = `    Views: <span class="views">  ${data}  </span>`; 
+        counter.innerHTML = `    VIEWS: <span class="views">  ${data}  </span>`; 
     }
 
     // Calls the function to execute when the script runs
