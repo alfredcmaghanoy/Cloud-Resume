@@ -7,7 +7,7 @@
     async function updateCounter () {        
 
         // Sends a request to the AWS Lambda function URL and waits for the response. The URL is the aws lambda function url
-        let response = await fetch("https://hdgz2u5h4eanvfh735jpp6y6t40xtttb.lambda-url.ap-southeast-1.on.aws/"); 
+        let response = await fetch("https://mrfs6gmk3mw4ocrpztabllop340moorx.lambda-url.ap-southeast-1.on.aws/"); 
 
         // Converts the response into a JavaScript object and stores it in the "data" variable
         let data = await response.json();      

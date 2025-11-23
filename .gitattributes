@@ -1,0 +1,17 @@
+# ----------------------------
+# Text files - normalize line endings
+# ----------------------------
+infra/**/*.py      text
+infra/**/*.tf      text
+infra/**/*.hcl     text
+infra/.terraform.lock.hcl text
+
+# ----------------------------
+# Binary files
+# ----------------------------
+infra/**/*.zip     binary
+infra/.terraform/providers/**/*.exe binary
+infra/.terraform/providers/**/*.zip binary
+infra/.terraform/providers/**/*.dll binary
+infra/**/*.png     binary
+infra/**/*.jpg     binary

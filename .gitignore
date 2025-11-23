@@ -1,0 +1,17 @@
+# ----------------------------
+# Terraform generated files
+# ----------------------------
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
+infra/.terraform/
+
+# Packed Lambda (optional, if rebuilt locally)
+infra/packedlambda.zip
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db
