@@ -3537,14 +3537,10 @@ td:last-child {
 
 /* Views Counter Styling */
 .views-counter {
-    display: inline-block;          
-    color: var(--color-btn-stroke-text); 
-    font-family: var(--font-1);
-    font-size: calc(var(--text-size) * 1.4);                
-    font-weight: 600;
-    letter-spacing: 0.3em;
-    padding: 12px 12px;              
-    cursor: default;                
+    font-size: clamp(3.2rem, 0.4rem, 4.5rem);
+    line-height: 1.25;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;             
 }
 
 /* Styling the number specifically */
@@ -3648,7 +3644,8 @@ td:last-child {
 .s-intro__content-btns,
 .s-intro__btn-download,
 .s-intro__social,
-.s-intro__scroll-down {
+.s-intro__scroll-down,
+.views-counter {
     transition-timing-function: cubic-bezier(0.28, 0.12, 0.22, 1);
     transition-duration       : 0.6s;
     transition-delay          : 0s;
@@ -3670,7 +3667,8 @@ td:last-child {
 .s-intro__content-title,
 .s-intro__content-subtitle,
 .s-intro__content-tagline,
-.s-intro__content-btns {
+.s-intro__content-btns,
+.views-counter {
     transition-property: opacity, transform;
     transform          : translateY(150px);
 }
@@ -3701,10 +3699,12 @@ td:last-child {
 .no-js .s-intro__content-subtitle,
 .no-js .s-intro__content-tagline,
 .no-js .s-intro__content-btns,
+.no-js .views-counter,
 .ss-show .s-intro__content-title,
 .ss-show .s-intro__content-subtitle,
 .ss-show .s-intro__content-tagline,
-.ss-show .s-intro__content-btns {
+.ss-show .s-intro__content-btns,
+.ss-show .views-counter {
     opacity  : 1;
     transform: translateY(0);
 }
@@ -3738,6 +3738,11 @@ td:last-child {
 .no-js .s-intro__content-tagline,
 .ss-show .s-intro__content-tagline {
     transition-delay: 0.5s;
+}
+
+.no-js .views-counter,
+.ss-show .views-counter {
+    transition-delay: 0.55s;
 }
 
 .no-js .s-intro__content-btns,
@@ -3913,6 +3918,14 @@ td:last-child {
     .s-intro__scroll-down .scroll-icon {
         height: var(--vspace-1_5);
         width : var(--vspace-1_5);
+    }
+    .views-counter {
+        font-size: clamp(2.4rem, 4.5vw + 0.3rem, 4.8rem);
+        color    : white;
+    }
+
+    .view-counter br {
+        display: none;
     }
 }
 
@@ -4529,5 +4542,91 @@ td:last-child {
 @media screen and (max-width: 400px) {
     .ss-go-top {
         right: -2rem;
+    }
+}
+
+/* ===================================================================
+ * # Cloud Resume Document
+ *
+ *
+ * ------------------------------------------------------------------- */
+.s-document {
+    padding-top: var(--vspace-7);
+    color      : var(--color-3);
+}
+
+/* --------------------------------------------------------------------
+ * ## document blocks
+ * -------------------------------------------------------------------- */
+.s-document__blocks {
+    margin-top: var(--vspace-3);
+}
+
+.s-document__blocks .s-document__block-title {
+    margin-top   : 0;
+    margin-bottom: var(--vspace-1);
+    padding-left : 1.45rem;
+    position     : relative;
+}
+
+.s-document__blocks .s-document__block-title::before {
+    content         : "";
+    height          : 0.7em;
+    width           : 3px;
+    background-color: var(--color-1);
+    transform       : translateY(-50%);
+    position        : absolute;
+    left            : 0;
+    top             : 50%;
+}
+
+.s-document__list {
+    list-style : none;
+    font-size  : calc(var(--text-size) * 1.05);
+    margin-left: 0;
+    list-style-type: "⋄  ";
+    padding-left: 1.2em;
+}
+
+.s-document__list a {
+    color: var(--color-text);
+}
+
+.s-document__list li {
+    font-weight  : 500;
+    margin-bottom: var(--vspace-0_625);
+    padding-left : 0;
+    padding-left: 0.4em;
+}
+
+.s-document__list span {
+    display    : block;
+    font-size  : var(--text-sm);
+    font-weight: 300;
+    line-height: 1.2;
+    color      : var(--color-text-light) !important;
+}
+
+.s-document__job-responsibilities {
+  list-style-type: disc;
+  padding-left: 3.4rem;        /* increased indentation */
+  margin-top: 0.5rem;          /* adds a little gap from the company name */
+  line-height: 1.6;
+  color: var(--color-text, #555);
+  font-size: 1.8rem;           /* slightly smaller for nice hierarchy */
+}
+
+.s-document__job-responsibilities li {
+    margin-bottom: 0.6em;
+}
+
+
+/* ------------------------------------------------------------------- 
+ * responsive:
+ * document
+ * ------------------------------------------------------------------- */
+@media screen and (max-width: 800px) {
+    .s-document {
+        padding-top: var(--vspace-5);
     }
 }

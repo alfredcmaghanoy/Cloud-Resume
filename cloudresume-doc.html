@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" >
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cloud Resume Project</title>
+
+    <script>
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+
+</head>
+
+
+<body id="top">
+
+    
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader" class="dots-fade">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+
+    <!-- page wrap
+    ================================================== -->
+    <div id="page" class="s-pagewrap">
+
+ 
+        <!-- # site header 
+        ================================================== -->
+        <header class="s-header">
+            <div class="row s-header__inner">
+
+                <div class="s-header__block">
+                    <div class="s-header__logo">
+                        <a class="logo" href="index.html">
+                            <img src="images/logo.svg" alt="Homepage">
+                        </a>
+                    </div>
+
+                    <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
+                </div> <!-- end s-header__block -->
+
+                <nav class="s-header__nav">    
+                    <ul class="s-header__menu-links">
+                        <li class="current"><a class="smoothscroll" href="index.html#home">Home</a></li>
+                        <li><a class="smoothscroll" href="index.html#about">About</a></li>
+                        <li><a class="smoothscroll" href="index.html#works">Projects</a></li>
+                        <li><a class="smoothscroll" href="index.html#footer">Contact</a></li>
+                    </ul> <!-- s-header__menu-links -->    
+                </nav> <!-- end s-header__nav -->
+
+            </div> <!-- end s-header__inner -->
+        </header> <!-- end s-header -->
+
+        <!-- # document
+        ================================================== -->
+        <section id="document" class="s-document target-section">
+
+            <div class="row s-document__content">
+                <div class="column xl-12">    
+                    
+                    <div class="section-header">
+                        <h2 class="text-display-title">AWS Cloud Resume Challenge</h2>
+                    </div> <!-- end section-header -->
+
+                    <img src="images/folio/gallery/resume_architecture.jpg">  
+                    <section>
+                    <h4><strong>Building the Static Frontend</strong></h4>
+
+                    <ul>
+                        <li>
+                            <strong>Website Development</strong>
+                                <p>
+                                    With no prior experience in HTML, CSS, JavaScript, or frontend development, 
+                                    I first dedicated time to learning the fundamentals. 
+                                    After gaining a basic understanding, 
+                                    and although I was not yet confident in building a website entirely from scratch, 
+                                    I explored portfolio templates on ThemeWagon and customized one to match my content and personal style.
+                                </p>
+                        </li>
+
+                        <li>
+                            <strong>Hosting the Static Website on Amazon S3</strong>
+                                <p>
+                                    This part was exciting because it marked the moment I finally began using the cloud in 
+                                    a practical way. To host my static website on AWS, I took the following steps:
+                                    <ul>
+                                        <li>Created an S3 bucket with a selected bucket name and AWS Region to store all website files.</li>
+                                        <li>Blocked all public access to ensure the bucket remained secure.</li>
+                                        <li>
+                                            Instead of enabling S3 static website hosting, 
+                                            CloudFront was used as the content delivery layer to improve security, performance, and provide HTTPS support.
+                                        </li>
+                                    </ul>
+                                </p>
+                                    
+                        </li>
+                        
+                        <li>
+                            <strong>Setting up Content Delivery Network (CDN) using Amazon CloudFront</strong>
+                                <p>
+                                    I set up a <strong>CloudFront distribution</strong> to deliver my website content globally, ensuring it 
+                                    is served from edge locations with minimal latency. I configured the distribution's 
+                                    viewer protocol policy to HTTPS only for secure connections. Since my S3 bucket has all 
+                                    public access blocked, I used <strong>Origin Access Control (OAC)</strong> to restrict access so that only 
+                                    CloudFront can retrieve the content, following AWS best practices.
+                                </p>
+                        </li>
+
+                        <li>
+                            <strong>Setting the Domain Name System (DNS) using Hostinger</strong>
+                                <p>
+                                    After creating the CloudFront distribution, AWS provided a default domain name, but I 
+                                    opted to use a custom domain to create a professional and memorable URL. While AWS offers 
+                                    Route 53 as its DNS service, I chose <strong>Hostinger</strong> for managing 
+                                    <strong>alfredcm.cloud</strong> because it offered a more cost-effective solution. On 
+                                    Hostinger, I configured the DNS records, including <strong>CAA</strong>, 
+                                    <strong>CNAME</strong>, and <strong>ALIAS</strong>, to correctly point to my AWS resources.
+                                </p>
+                        </li>
+
+                        <li>
+                            <strong>Requesting an SSL/TLS Certificate in Amazon Certificate Manager (ACM)</strong>
+                                <p>
+                                    To add an alternate domain name to my CloudFront distribution, I first requested a 
+                                    public certificate from ACM in the <strong>us-east-1</strong> region. I included a 
+                                    wildcard (*) in the fully qualified domain name so the certificate could cover future 
+                                    subdomains like <strong>blog.alfredcm.cloud</strong> or 
+                                    <strong>app.alfredcm.cloud</strong>. ACM provided a unique CNAME record for validation, 
+                                    which I added to my DNS provider (Hostinger). Once ACM detected the matching CNAME, it 
+                                    verified my domain ownership and issued the SSL/TLS certificate for CloudFront.
+                                </p>
+                        </li>
+                    </ul>
+
+                    <p>
+                        After working through all these steps in this stage, I was excited to see my first website 
+                        officially hosted in the cloud.
+                    </p>
+                    </section>
+
+                    <section>
+                    <h4><strong>Building the Serverless Backend</strong></h4>
+
+                    <ul>
+                        <li>
+                            <strong>Adding a DynamoDB Table to Store the Visitor Count</strong>
+                                <p>
+                                    To store and update the number of visitors to my website, I provisioned a DynamoDB table 
+                                    to serve as the backend database for the counter. I configured it with a single partition 
+                                    key and added an initial item representing the visitor count, starting at zero.
+                                </p>
+                        </li>
+
+                        <li>
+                            <strong>Lambda Function for Visitor Counter</strong>
+                                <p>
+                                    Instead of accessing DynamoDB directly from the frontend, I created a <strong>Python Lambda function</strong> 
+                                    using the <code>boto3</code> library. The function retrieves the current count, increments it, 
+                                    updates the database, and returns the new value to the frontend.
+                                </p>
+                        </li>
+
+                        <li>
+                            <strong>Security & Permissions (IAM)</strong>
+                                <p>
+                                    I configured a specific <strong>IAM Execution Role</strong>. Since Lambda functions are isolated 
+                                    by default, I attached a policy granting the function explicit permissions to read and write 
+                                    to my specific DynamoDB table, ensuring secure interactions.
+                                </p>
+                        </li>
+
+                        <li>
+                            <strong>Testing</strong>
+                                <p>
+                                    Before integrating with the frontend, I validated the function's logic using the 
+                                    <strong>AWS Console Test Event</strong> feature. I confirmed success by invoking the function 
+                                    and physically verifying in the DynamoDB console that the item count incremented from 0 to 1.
+                                </p>
+                        </li>
+                    </ul>
+
+                    <p>
+                        To tackle this stage, I had to take on the challenge of learning Python from scratch, as I had 
+                        no prior experience with the language. I dedicated time to studying the basics, but with only 
+                        foundational knowledge, I was not yet able to write the code independently. By leveraging online 
+                        resources and going through a process of trial and error, I was eventually able to successfully 
+                        develop the Python code needed for the Lambda function.
+                    </p>
+                    </section>
+
+                    <section>
+                    <h4><strong>Frontend / Backend Integration</strong></h4>
+
+                    <ul>
+                        <li>
+                            <strong>API Exposure (Lambda Function URL)</strong>
+                                <p>
+                                    To expose the backend logic to the public internet, I utilized the <strong>Lambda Function URL</strong> feature. 
+                                    I configured the Function URL to provide a dedicated HTTPS endpoint that is directly mapped 
+                                    to the Lambda function.
+                                </p>
+                                <p>
+                                    To ensure security at the browser level, I enabled <strong>Cross-Origin Resource Sharing (CORS)</strong> 
+                                    in the Function URL settings. In the <strong>Allow Origins</strong> field, I specified my website's full domain, 
+                                    <a href="https://resume.alfredcm.cloud" target="_blank">https://resume.alfredcm.cloud</a>, 
+                                    so that only requests originating from my site are permitted.
+                                </p>
+                                <p>
+                                    This setup ensures that while the endpoint is publicly accessible, it can only be successfully invoked by 
+                                    browsers running my specific website, effectively preventing unauthorized sites from inflating the visitor counter.
+                                </p>
+                        </li>
+
+                        <li>
+                            <strong>Integrating the Frontend with Backend</strong>
+                            <p>
+                                I wrote a code wherein, when a visitor loads the website, the static JavaScript file executes an asynchronous 
+                                HTTP request to the Lambda Function URL in order to retrieve and update the current visitor count. The response 
+                                is then processed and dynamically displayed on the webpage, allowing real-time interaction between the frontend 
+                                and the serverless backend.
+                            </p>
+                        </li>
+                    </ul>
+                    </section>
+
+                    <section>
+                    <h4><strong>Automation & CI/CD Processes</strong></h4>
+
+                        <p>
+                            To ensure the project is maintainable and scalable, I implemented a full Continuous Integration 
+                            and Continuous Deployment (CI/CD) pipeline. I used <strong>GitHub</strong> for version control and <strong>GitHub Actions</strong> 
+                            to automate the deployment of both frontend website and the backend infrastructure. You can explore 
+                            the full project source code in my GitHub repository here: 
+                            <a href="https://github.com/alfredcmaghanoy/Cloud-Resume.git" target="_blank">
+                            https://github.com/alfredcmaghanoy/Cloud-Resume.git
+                            </a>
+                        </p>
+
+                    <ul>
+                        <li>
+                            <strong>Source Control Strategy (GitHub)</strong>
+                                <p>
+                                    The GitHub repository serves as the Single Source of Truth for the project. The HTML, CSS, and 
+                                    JavaScript files are version-controlled here. This allows me to track changes, revert to previous 
+                                    versions if something breaks, and work on new features without affecting the site immediately.
+                                </p>
+                                <p>
+                                    I utilized a standard branching workflow. Code is developed and tested on a feature branch before 
+                                    being merged into the main branch.
+                                </p>
+                        </li>
+
+                        <li>
+                            <strong>The CI/CD Pipeline</strong>
+                                <p>
+                                    I configured a GitHub Actions workflow to automate the deployment of my static website. This ensures 
+                                    that every time I update my resume text or styling, the live site updates automatically.
+                                </p>
+                            <ul>
+                                <li>
+                                    <strong>The Workflow Process:</strong>
+                                        <ol>
+                                            <li>
+                                                <strong>Development</strong> - I make changes to the website code on my local directory.
+                                            </li>
+                                            <li>
+                                                <strong>Push</strong> - I commit these changes and push them to the branch named <code>update</code>.
+                                            </li>
+                                            <li>
+                                                <strong>Pull request</strong> - I review the changes made on the <code>update</code> branch before merging to the main branch.
+                                            </li>
+                                            <li>
+                                                <strong>Trigger</strong> - The merge event triggers a workflow defined in <code>.github/workflows/front-end-cicd.yml</code>.
+                                            </li>
+                                            <li>
+                                                <strong>Job Execution</strong>
+                                                    <ul>
+                                                        <li><strong>Checkout</strong> - The GitHub runner checks out the latest code.</li>
+                                                        <li><strong>Configure AWS Credentials</strong> - The runner authenticates with AWS using secure GitHub Secrets (storing the Access Key ID and Secret Access Key securely, rather than in the code).</li>
+                                                        <li><strong>Sync to S3</strong> - The workflow runs the AWS CLI command to upload only the modified files to the S3 bucket.</li>
+                                                        <li><strong>Invalidate Cache</strong> - The workflow clears the CloudFront cache, forcing the CDN to fetch the new files from S3 immediately so visitors see the latest updates.</li>
+                                                    </ul>
+                                            </li>
+                                        </ol>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Security Considerations</strong>
+                                <p>
+                                    I strictly avoided hardcoding the AWS credentials in the repository. Instead, I used GitHub Actions Secrets 
+                                    to inject credentials into the pipeline environment only during runtime.
+                                </p>
+                        </li>
+                    </ul>
+                    </section>
+
+                    <section>
+                    <h4><strong>Implementing Infrastructure as Code</strong></h4>
+
+                    <p>
+                        I used <strong>Terraform</strong> to automate the backend infrastructure, ensuring consistent, 
+                        repeatable, and version-controlled cloud deployments. Terraform was specifically applied to 
+                        provision and manage AWS Lambda, DynamoDB, IAM roles and policies, and the Lambda Function URL 
+                        for the page view counter API.
+                    </p>
+
+                    <p>
+                        A dedicated <code>provider.tf</code> file was configured to define the AWS region and credentials, 
+                        allowing Terraform to authenticate with my AWS account and align with the existing S3 bucket used for the frontend. 
+                        While the frontend resources were deployed through a separate CI/CD pipeline, Terraform ensured that all backend services 
+                        were reliably created, updated, and destroyed using code.
+                    </p>
+
+                    <p>
+                        This approach reduces manual configuration, minimizes deployment errors, and enforces security best practices such as 
+                        least-privilege IAM roles and restricted DynamoDB access.
+                    </p>
+                    </section>
+
+                    <section>
+                    <h4><strong>Final Thoughts</strong></h4>
+
+                        <p>
+                            Working on this project has been one of the most rewarding learning experiences I’ve had so far. 
+                            When I started, I had little to no experience with the technical skills and cloud technologies involved. 
+                            It felt overwhelming at first since there was so much to learn just to get a single piece working.
+                        </p>
+
+                        <p>
+                            But tackling the project step by step pushed me to stay curious, keep adapting, and embrace failures as part of the process. 
+                            Along the way, I learned patience, perseverance, and the value of continuously improving myself. Completing this challenge 
+                            made me realize that I still have a long way to go, but it also reminded me of how far I’ve already come.
+                        </p>
+
+                        <p>
+                            I hope this encourages others to try the Cloud Resume Challenge and start their own journey into the cloud. 
+                            Thank you for taking the time to read!
+                        </p>
+                    </section>
+
+                </div> <!--end column -->
+            </div> <!--end s-about__content -->
+            
+        </section> <!-- end s-about -->   
+
+
+        <!-- # footer 
+        ================================================== -->
+        <footer id="footer" class="s-footer target-section" style="padding-top: 0;">
+
+            <div class="row s-footer__bottom" style="margin-top: 0;">
+                
+                <div class="column xl-6 lg-12">
+                    <ul class="s-footer__social social-list">
+                        <li>
+                            <a href="https://www.facebook.com/alfredcmaghanoy/" target="\_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20,3H4C3.447,3,3,3.448,3,4v16c0,0.552,0.447,1,1,1h8.615v-6.96h-2.338v-2.725h2.338v-2c0-2.325,1.42-3.592,3.5-3.592 c0.699-0.002,1.399,0.034,2.095,0.107v2.42h-1.435c-1.128,0-1.348,0.538-1.348,1.325v1.735h2.697l-0.35,2.725h-2.348V21H20 c0.553,0,1-0.448,1-1V4C21,3.448,20.553,3,20,3z"></path></svg>
+                            <span class="u-screen-reader-text">Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/4lfred.cm/" target="\_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.999,7.377c-2.554,0-4.623,2.07-4.623,4.623c0,2.554,2.069,4.624,4.623,4.624c2.552,0,4.623-2.07,4.623-4.624 C16.622,9.447,14.551,7.377,11.999,7.377L11.999,7.377z M11.999,15.004c-1.659,0-3.004-1.345-3.004-3.003 c0-1.659,1.345-3.003,3.004-3.003s3.002,1.344,3.002,3.003C15.001,13.659,13.658,15.004,11.999,15.004L11.999,15.004z"></path><circle cx="16.806" cy="7.207" r="1.078"></circle><path d="M20.533,6.111c-0.469-1.209-1.424-2.165-2.633-2.632c-0.699-0.263-1.438-0.404-2.186-0.42 c-0.963-0.042-1.268-0.054-3.71-0.054s-2.755,0-3.71,0.054C7.548,3.074,6.809,3.215,6.11,3.479C4.9,3.946,3.945,4.902,3.477,6.111 c-0.263,0.7-0.404,1.438-0.419,2.186c-0.043,0.962-0.056,1.267-0.056,3.71c0,2.442,0,2.753,0.056,3.71 c0.015,0.748,0.156,1.486,0.419,2.187c0.469,1.208,1.424,2.164,2.634,2.632c0.696,0.272,1.435,0.426,2.185,0.45 c0.963,0.042,1.268,0.055,3.71,0.055s2.755,0,3.71-0.055c0.747-0.015,1.486-0.157,2.186-0.419c1.209-0.469,2.164-1.424,2.633-2.633 c0.263-0.7,0.404-1.438,0.419-2.186c0.043-0.962,0.056-1.267,0.056-3.71s0-2.753-0.056-3.71C20.941,7.57,20.801,6.819,20.533,6.111z M19.315,15.643c-0.007,0.576-0.111,1.147-0.311,1.688c-0.305,0.787-0.926,1.409-1.712,1.711c-0.535,0.199-1.099,0.303-1.67,0.311 c-0.95,0.044-1.218,0.055-3.654,0.055c-2.438,0-2.687,0-3.655-0.055c-0.569-0.007-1.135-0.112-1.669-0.311 c-0.789-0.301-1.414-0.923-1.719-1.711c-0.196-0.534-0.302-1.099-0.311-1.669c-0.043-0.95-0.053-1.218-0.053-3.654 c0-2.437,0-2.686,0.053-3.655c0.007-0.576,0.111-1.146,0.311-1.687c0.305-0.789,0.93-1.41,1.719-1.712 c0.534-0.198,1.1-0.303,1.669-0.311c0.951-0.043,1.218-0.055,3.655-0.055c2.437,0,2.687,0,3.654,0.055 c0.571,0.007,1.135,0.112,1.67,0.311c0.786,0.303,1.407,0.925,1.712,1.712c0.196,0.534,0.302,1.099,0.311,1.669 c0.043,0.951,0.054,1.218,0.054,3.655c0,2.436,0,2.698-0.043,3.654H19.315z"></path></svg>                                
+                            <span class="u-screen-reader-text">Instagram</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/alfredmaghanoy/" target="\_blank" rel="noopener noreferrer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM7.09 19H4.337V9h2.754v10zM5.713 7.689c-.885 0-1.603-.718-1.603-1.604 0-.885.718-1.604 1.603-1.604.885 0 1.604.719 1.604 1.604 0 .886-.719 1.604-1.604 1.604zM20 19h-2.753v-5.356c0-1.276-.024-2.918-1.777-2.918-1.778 0-2.05 1.387-2.05 2.822V19h-2.753V9h2.64v1.366h.037c.368-.694 1.268-1.425 2.611-1.425 2.79 0 3.305 1.836 3.305 4.224V19z"/></svg>
+                            <span class="u-screen-reader-text">LinkedIn</span>
+                            </a>
+                        </li>
+
+                    </ul> 
+                </div> <!-- end section-footer__social -->
+
+                <div class="column xl-6 lg-12">
+                    <p class="ss-copyright">
+                        <span>© Copyright Hudson 2023</span> 
+                        <span>Design by <a href="https://styleshout.com/">StyleShout</a> Distribution by <a href="https://themewagon.com">ThemeWagon</a></span>
+                    </p>
+                </div>
+
+            </div> <!-- end section-footer__bottom -->          
+
+            <div class="ss-go-top">
+                <a class="smoothscroll" title="Back to Top" href="#top">                 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5.536 21.886a1.004 1.004 0 0 0 1.033-.064l13-9a1 1 0 0 0 0-1.644l-13-9A1 1 0 0 0 5 3v18a1 1 0 0 0 .536.886z"></path></svg>
+                </a>                                
+                <span>Back To Top</span>   
+            </div> <!-- end ss-go-top -->
+            
+        </footer> <!-- end s-footer -->
+
+    </div> <!-- end page-wrap -->
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+</html>
